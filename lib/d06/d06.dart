@@ -11,12 +11,12 @@ void run() {
 
 void resolvePuzzle01(String input) {
   int result = resolve(input, 4);
-  print('puzzle 01 : $result');
+  print('part 01 : $result');
 }
 
 void resolvePuzzle02(String input) {
   int result = resolve(input, 14);
-  print('puzzle 02 : $result');
+  print('part 02 : $result');
 }
 
 int resolve(String input, int markerLength) {

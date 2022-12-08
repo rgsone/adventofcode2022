@@ -22,7 +22,7 @@ void resolvePuzzle01(List<String> input) {
     currentElfCal += int.parse(input[i]);
   }
 
-  print('puzzle 01 : $result');
+  print('part 01 : $result');
 }
 
 void resolvePuzzle02(List<String> input) {
@@ -43,5 +43,5 @@ void resolvePuzzle02(List<String> input) {
       .skip(calories.length - 3)
       .reduce((value, element) => value + element);
 
-  print('puzzle 02 : $result');
+  print('part 02 : $result');
 }

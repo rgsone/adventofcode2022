@@ -31,7 +31,7 @@ void resolvePuzzle01(List<String> input) {
     result += chars.indexOf(duplicate) + 1;
   });
 
-  print('puzzle 01 : $result');
+  print('part 01 : $result');
 }
 
 void resolvePuzzle02(List<String> input) {
@@ -47,7 +47,7 @@ void resolvePuzzle02(List<String> input) {
     });
     result += chars.indexOf(badge) + 1;
   });
-  print('puzzle 02 : $result');
+  print('part 02 : $result');
 }
 
 List<List<String>> chunk(List<String> list, int chunkSize) {

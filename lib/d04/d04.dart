@@ -23,7 +23,7 @@ void resolvePuzzle01(List<String> input) {
     }
   });
 
-  print('puzzle 01 : $result');
+  print('part 01 : $result');
 }
 
 void resolvePuzzle02(List<String> input) {
@@ -39,5 +39,5 @@ void resolvePuzzle02(List<String> input) {
     }
   });
 
-  print('puzzle 02 : $result');
+  print('part 02 : $result');
 }

@@ -47,7 +47,7 @@ void resolvePuzzle01(List<List<String>> stacks, List<String> instructions) {
     result += element.last;
   });
 
-  print('puzzle 01 : $result');
+  print('part 01 : $result');
 }
 
 void resolvePuzzle02(List<List<String>> stacks, List<String> instructions) {
@@ -70,5 +70,5 @@ void resolvePuzzle02(List<List<String>> stacks, List<String> instructions) {
     result += element.last;
   });
 
-  print('puzzle 02 : $result');
+  print('part 02 : $result');
 }

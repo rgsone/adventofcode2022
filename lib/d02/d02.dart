@@ -36,7 +36,7 @@ void resolvePuzzle01(List<String> input) {
   input.forEach((elem) {
     result += scores[elem]?[0] ?? 0;
   });
-  print('puzzle 01 : $result');
+  print('part 01 : $result');
 }
 
 void resolvePuzzle02(List<String> input) {
@@ -44,5 +44,5 @@ void resolvePuzzle02(List<String> input) {
   input.forEach((elem) {
     result += scores[elem]?[1] ?? 0;
   });
-  print('puzzle 02 : $result');
+  print('part 02 : $result');
 }
