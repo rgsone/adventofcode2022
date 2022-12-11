@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 void run() {
-  const filename = 'lib\\d11\\test-input.txt';
+  const filename = 'lib\\d11\\input.txt';
   File file = File(filename);
   var input = file.readAsStringSync().split('\r\n\r\n');
   print('Day 11');
@@ -22,7 +22,7 @@ void resolvePuzzle01(List<String> input) {
 
   for (int i = 0; i < 20; i++) {
     for (Monkey monkey in monkeys) {
-      monkey.inspect(monkeys);
+      monkey.inspect(monkeys, true);
     }
   }
 
@@ -35,7 +35,23 @@ void resolvePuzzle01(List<String> input) {
 ////////////////////////////////////////////////////////////////////
 
 void resolvePuzzle02(List<String> input) {
-  print('part 02 : 0');
+  var monkeys = <Monkey>[];
+
+  input.forEach((monkeyCarac) {
+    monkeys.add(Monkey.parseCarac(monkeyCarac));
+  });
+
+  var commonMod = monkeys.map((e) => e.divNumber).reduce((v1, v2) => v1 * v2);
+
+  for (int i = 0; i < 10000; i++) {
+    for (Monkey monkey in monkeys) {
+      monkey.inspect(monkeys, false, commonMod);
+    }
+  }
+
+  monkeys.sort((a, b) => b.inspectedCount.compareTo(a.inspectedCount));
+
+  print('part 02 : ${monkeys[0].inspectedCount * monkeys[1].inspectedCount}');
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -88,10 +104,12 @@ class Monkey {
     return testOperation;
   }
 
-  void inspect(List<Monkey> monkeys) {
+  void inspect(List<Monkey> monkeys, bool part1, [int? commonMod]) {
     while (items.isNotEmpty) {
       var item = items.removeAt(0);
-      var worryLvl = (testOperation(item) / 3).floor();
+      var worryLvl = part1
+          ? (testOperation(item) / 3).floor()
+          : testOperation(item) % commonMod!;
 
       if (worryLvl % divNumber == 0) {
         monkeys[trueThrowTarget].items.add(worryLvl);
