@@ -7,6 +7,7 @@ import 'package:adventofcode2022/d06/d06.dart' as d06;
 import 'package:adventofcode2022/d07/d07.dart' as d07;
 import 'package:adventofcode2022/d08/d08.dart' as d08;
 import 'package:adventofcode2022/d09/d09.dart' as d09;
+import 'package:adventofcode2022/d10/d10.dart' as d10;
 
 void main(List<String> arguments) {
   d01.run();
@@ -18,4 +19,5 @@ void main(List<String> arguments) {
   d07.run();
   d08.run();
   d09.run();
+  d10.run();
 }
