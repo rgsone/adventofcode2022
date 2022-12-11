@@ -20,7 +20,8 @@ void resolvePuzzle01(List<String> input) {
   input.forEach((line) {
     var instruction = line.split(' ');
 
-    void checkCycleCount() {
+    void update() {
+      cycles++;
       if (cycles == 20 || (cycles + 20) % 40 == 0) {
         signalStrengthSum += cycles * regX;
       }
@@ -28,14 +29,11 @@ void resolvePuzzle01(List<String> input) {
 
     switch (instruction.first) {
       case 'noop':
-        cycles++;
-        checkCycleCount();
+        update();
         break;
       case 'addx':
-        cycles++;
-        checkCycleCount();
-        cycles++;
-        checkCycleCount();
+        update();
+        update();
         regX += int.parse(instruction.last);
         break;
     }
