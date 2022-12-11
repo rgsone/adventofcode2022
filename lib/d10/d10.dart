@@ -48,5 +48,38 @@ void resolvePuzzle01(List<String> input) {
 ////////////////////////////////////////////////////////////////////
 
 void resolvePuzzle02(List<String> input) {
-  print('part 02 : 0');
+  var cycles = 1;
+  var regX = 1;
+  var pixels = List<List<String>>.generate(
+      6, (index) => List<String>.generate(40, (index) => '.'));
+
+  input.forEach((line) {
+    var instruction = line.split(' ');
+
+    void update() {
+      var col = (cycles - 1) % 40;
+      var row = (cycles / 40).ceil() - 1;
+
+      if (col >= regX - 1 && col <= regX + 1)
+        pixels[row][col] = '#';
+      else
+        pixels[row][col] = '.';
+
+      cycles++;
+    }
+
+    switch (instruction.first) {
+      case 'noop':
+        update();
+        break;
+      case 'addx':
+        update();
+        update();
+        regX += int.parse(instruction.last);
+        break;
+    }
+  });
+
+  print('part 02');
+  pixels.forEach((row) => print(row.join()));
 }
