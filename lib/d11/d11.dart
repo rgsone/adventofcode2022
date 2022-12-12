@@ -6,35 +6,28 @@ void run() {
   File file = File(filename);
   var input = file.readAsStringSync().split('\r\n\r\n');
   print('Day 11');
-  resolvePuzzle01(input);
-  resolvePuzzle02(input);
+  resolvePart1(input);
+  resolvePart2(input);
 }
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-void resolvePuzzle01(List<String> input) {
-  var monkeys = <Monkey>[];
-
-  input.forEach((monkeyCarac) {
-    monkeys.add(Monkey.parseCarac(monkeyCarac));
-  });
-
-  for (int i = 0; i < 20; i++) {
-    for (Monkey monkey in monkeys) {
-      monkey.inspect(monkeys, true);
-    }
-  }
-
-  monkeys.sort((a, b) => b.inspectedCount.compareTo(a.inspectedCount));
-
-  print('part 01 : ${monkeys[0].inspectedCount * monkeys[1].inspectedCount}');
+void resolvePart1(List<String> input) {
+  print('part 01 : ${resolve(input, 20, true)}');
 }
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-void resolvePuzzle02(List<String> input) {
+void resolvePart2(List<String> input) {
+  print('part 02 : ${resolve(input, 10000, false)}');
+}
+
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+int resolve(List<String> input, int round, bool isPart1) {
   var monkeys = <Monkey>[];
 
   input.forEach((monkeyCarac) {
@@ -43,19 +36,16 @@ void resolvePuzzle02(List<String> input) {
 
   var commonMod = monkeys.map((e) => e.divNumber).reduce((v1, v2) => v1 * v2);
 
-  for (int i = 0; i < 10000; i++) {
+  for (int i = 0; i < round; i++) {
     for (Monkey monkey in monkeys) {
-      monkey.inspect(monkeys, false, commonMod);
+      monkey.inspect(monkeys, isPart1, commonMod);
     }
   }
 
   monkeys.sort((a, b) => b.inspectedCount.compareTo(a.inspectedCount));
 
-  print('part 02 : ${monkeys[0].inspectedCount * monkeys[1].inspectedCount}');
+  return monkeys[0].inspectedCount * monkeys[1].inspectedCount;
 }
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
 
 class Monkey {
   int id;
@@ -104,12 +94,12 @@ class Monkey {
     return testOperation;
   }
 
-  void inspect(List<Monkey> monkeys, bool part1, [int? commonMod]) {
+  void inspect(List<Monkey> monkeys, bool part1, int commonMod) {
     while (items.isNotEmpty) {
       var item = items.removeAt(0);
       var worryLvl = part1
           ? (testOperation(item) / 3).floor()
-          : testOperation(item) % commonMod!;
+          : testOperation(item) % commonMod;
 
       if (worryLvl % divNumber == 0) {
         monkeys[trueThrowTarget].items.add(worryLvl);
