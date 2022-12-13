@@ -19,8 +19,8 @@ void resolvePart1(List<String> input) {
 
   for (int i = 0; i < input.length; i++) {
     var cols = input[i].split('');
-    var startIndex = cols.indexWhere((e) => e == 'S');
-    if (startIndex > -1) start.set(i, startIndex, 0);
+    var startCol = cols.indexWhere((e) => e == 'S');
+    if (startCol > -1) start = Position(i, startCol, start.steps);
     grid.add(cols);
   }
 
@@ -38,6 +38,7 @@ void resolvePart1(List<String> input) {
   queue.add(start);
   visited.add(start);
 
+  outer:
   while (queue.isNotEmpty) {
     var cur = queue.removeAt(0);
 
@@ -57,7 +58,7 @@ void resolvePart1(List<String> input) {
 
       if (grid[n.row][n.col] == 'E') {
         result = n.steps;
-        break;
+        break outer;
       }
 
       queue.add(n);
@@ -71,7 +72,57 @@ void resolvePart1(List<String> input) {
 ////////////////////////////////////////////////////////////////////
 
 void resolvePart2(List<String> input) {
-  print('part 02 : 0');
+  var result = 0;
+  var grid = <List<String>>[];
+  Position start = Position(0, 0, 0);
+
+  for (int i = 0; i < input.length; i++) {
+    var cols = input[i].split('');
+    var startCol = cols.indexWhere((e) => e == 'E');
+    if (startCol > -1) start = Position(i, startCol, start.steps);
+    grid.add(cols);
+  }
+
+  var rows = grid.length;
+  var cols = grid.first.length;
+  var queue = <Position>[];
+  var visited = <Position>{};
+  var directions = <List<int>>[
+    [-1, 0],
+    [0, -1],
+    [1, 0],
+    [0, 1]
+  ];
+
+  queue.add(start);
+  visited.add(start);
+
+  outer:
+  while (queue.isNotEmpty) {
+    var cur = queue.removeAt(0);
+
+    for (var dir in directions) {
+      var nRow = cur.row + dir[0];
+      var nCol = cur.col + dir[1];
+
+      if (nRow < 0 || nRow >= rows || nCol < 0 || nCol >= cols) continue;
+      if ((getHeight(grid[nRow][nCol]) - getHeight(grid[cur.row][cur.col])) <
+          -1) continue;
+      if (visited.any((e) => e.row == nRow && e.col == nCol)) continue;
+
+      var n = Position(nRow, nCol, cur.steps + 1);
+      visited.add(n);
+
+      if (grid[n.row][n.col] == 'a') {
+        result = n.steps;
+        break outer;
+      }
+
+      queue.add(n);
+    }
+  }
+
+  print('part 02 : $result');
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -87,16 +138,4 @@ class Position {
   int steps;
 
   Position(this.row, this.col, this.steps);
-
-  void set(int row, int col, [int? height]) {
-    this.row = row;
-    this.col = col;
-    this.steps = height ?? this.steps;
-  }
-
-  Position copy() {
-    return Position(this.row, this.col, this.steps);
-  }
-
-  String toString() => 'Pos[$row,$col](steps:$steps)';
 }
