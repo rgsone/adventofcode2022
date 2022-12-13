@@ -5,14 +5,14 @@ void run() {
   File file = File(filename);
   var input = file.readAsLinesSync();
   print('Day 10');
-  resolvePuzzle01(input);
-  resolvePuzzle02(input);
+  resolvePart1(input);
+  resolvePart2(input);
 }
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-void resolvePuzzle01(List<String> input) {
+void resolvePart1(List<String> input) {
   var cycles = 0;
   var regX = 1;
   var signalStrengthSum = 0;
@@ -45,7 +45,7 @@ void resolvePuzzle01(List<String> input) {
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-void resolvePuzzle02(List<String> input) {
+void resolvePart2(List<String> input) {
   var cycles = 1;
   var regX = 1;
   var pixels = List<List<String>>.generate(

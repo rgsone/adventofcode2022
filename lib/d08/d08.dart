@@ -6,8 +6,8 @@ void run() {
   var input = file.readAsLinesSync();
   var treeGrid = buildGrid(input);
   print('Day 08');
-  resolvePuzzle01(treeGrid);
-  resolvePuzzle02(treeGrid);
+  resolvePart1(treeGrid);
+  resolvePart2(treeGrid);
 }
 
 List<List<int>> buildGrid(List<String> input) {
@@ -21,7 +21,7 @@ List<List<int>> buildGrid(List<String> input) {
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-void resolvePuzzle01(List<List<int>> treeGrid) {
+void resolvePart1(List<List<int>> treeGrid) {
   int result = 0;
 
   for (int y = 0; y < treeGrid.length; y++) {
@@ -79,7 +79,7 @@ bool checkSouthVisibility(int x, int y, List<List<int>> grid) {
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-void resolvePuzzle02(List<List<int>> treeGrid) {
+void resolvePart2(List<List<int>> treeGrid) {
   int result = 0;
 
   for (int y = 0; y < treeGrid.length; y++) {

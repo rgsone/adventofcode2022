@@ -8,8 +8,8 @@ void run() {
   var instructions =
       input.skipWhile((value) => !value.startsWith('move')).toList();
   print('Day 05');
-  resolvePuzzle01(createStacks(stacksInput), instructions);
-  resolvePuzzle02(createStacks(stacksInput), instructions);
+  resolvePart1(createStacks(stacksInput), instructions);
+  resolvePart2(createStacks(stacksInput), instructions);
 }
 
 List<List<String>> createStacks(List<String> stacksInput) {
@@ -30,7 +30,7 @@ List<List<String>> createStacks(List<String> stacksInput) {
 var regex =
     RegExp(r'^move ([0-9]+) from ([0-9]+) to ([0-9]+)$', multiLine: false);
 
-void resolvePuzzle01(List<List<String>> stacks, List<String> instructions) {
+void resolvePart1(List<List<String>> stacks, List<String> instructions) {
   var result = '';
 
   instructions.forEach((element) {
@@ -50,7 +50,7 @@ void resolvePuzzle01(List<List<String>> stacks, List<String> instructions) {
   print('part 01 : $result');
 }
 
-void resolvePuzzle02(List<List<String>> stacks, List<String> instructions) {
+void resolvePart2(List<List<String>> stacks, List<String> instructions) {
   var result = '';
 
   instructions.forEach((element) {

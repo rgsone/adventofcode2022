@@ -5,16 +5,16 @@ void run() {
   File file = File(filename);
   var input = file.readAsStringSync();
   print('Day 06');
-  resolvePuzzle01(input);
-  resolvePuzzle02(input);
+  resolvePart1(input);
+  resolvePart2(input);
 }
 
-void resolvePuzzle01(String input) {
+void resolvePart1(String input) {
   int result = resolve(input, 4);
   print('part 01 : $result');
 }
 
-void resolvePuzzle02(String input) {
+void resolvePart2(String input) {
   int result = resolve(input, 14);
   print('part 02 : $result');
 }

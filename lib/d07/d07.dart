@@ -6,8 +6,8 @@ void run() {
   var input = file.readAsLinesSync();
   var dirTree = buildTree(input);
   print('Day 07');
-  resolvePuzzle01(dirTree);
-  resolvePuzzle02(dirTree);
+  resolvePart1(dirTree);
+  resolvePart2(dirTree);
 }
 
 Node buildTree(List<String> input) {
@@ -74,7 +74,7 @@ class Node {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-void resolvePuzzle01(Node dirTree) {
+void resolvePart1(Node dirTree) {
   print('part 01 : ${getDirTotalSizes(dirTree)}');
 }
 
@@ -96,7 +96,7 @@ int getDirTotalSizes(Node node) {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-void resolvePuzzle02(Node dirTree) {
+void resolvePart2(Node dirTree) {
   var usedSpace = dirTree.getTotalSize();
   var unusedSpace = 70000000 - usedSpace;
   var neededUnusedSpace = 30000000;

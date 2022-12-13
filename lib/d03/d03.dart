@@ -5,13 +5,13 @@ void run() {
   File file = File(filename);
   var input = file.readAsLinesSync();
   print('Day 03');
-  resolvePuzzle01(input);
-  resolvePuzzle02(input);
+  resolvePart1(input);
+  resolvePart2(input);
 }
 
 String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-void resolvePuzzle01(List<String> input) {
+void resolvePart1(List<String> input) {
   int result = 0;
 
   input.forEach((elem) {
@@ -34,7 +34,7 @@ void resolvePuzzle01(List<String> input) {
   print('part 01 : $result');
 }
 
-void resolvePuzzle02(List<String> input) {
+void resolvePart2(List<String> input) {
   int result = 0;
   String badge = '';
   List<List<String>> groups = chunk(input, 3);
