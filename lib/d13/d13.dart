@@ -31,7 +31,29 @@ void resolvePart1(List<String> input) {
 ////////////////////////////////////////////////////////////////////
 
 void resolvePart2(List<String> input) {
-  print('part 02 : 0');
+  input.add('[[2]]\r\n[[6]]');
+
+  var packets = [];
+
+  for (int i = 0; i < input.length; i++) {
+    var split = input[i].split('\r\n');
+    packets.add(jsonDecode(split[0]));
+    packets.add(jsonDecode(split[1]));
+  }
+
+  packets.sort(compPair);
+
+  var indexes = <int>[];
+  var id = 1;
+
+  packets.reversed.forEach((packet) {
+    if (packet.toString() == '[[2]]' || packet.toString() == '[[6]]') {
+      indexes.add(id);
+    }
+    id++;
+  });
+
+  print('part 02 : ${indexes.reduce((v, e) => v * e)}');
 }
 
 ////////////////////////////////////////////////////////////////////
